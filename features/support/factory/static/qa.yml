@@ -1,0 +1,4 @@
+valid_user:
+  email: 'theemail@email.com'
+  password: '123'
+something_for_search: 'potato'

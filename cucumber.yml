@@ -1,0 +1,3 @@
+default: -p report -p prd
+report: --format pretty --format html --out=reports/report.html
+prd: ENVIRONMENT="prd"
