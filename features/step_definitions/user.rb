@@ -1,16 +1,6 @@
 Dado("que possua um payload de usuário válido") do
   @body = Factory::Dynamic::valid_user
 end
-
-Quando("chamar o endpoint {string} com o método {string}") do |endpoint, method|
-  @serverest_api = ServeRest.new
-  endpoint += @params unless @params.nil?
-  @response = @serverest_api.send(method, endpoint, @body)
-end
-
-Então("deverá retornar o status code {int}") do |status_code|
-  expect(@response.status).to eq status_code
-end
    
 Então("deverá criar um usuário com sucesso") do
   response_body_json = JSON.parse(@response.body)
@@ -28,8 +18,30 @@ end
 Dado("que possua um usuário pré-cadastrado") do
   steps %{
     Dado que possua um payload de usuário válido
-    Quando chamar o endpoint "/usuarios" com o método "post"
+    Quando chamar o endpoint "/usuarios" com o método "post" sem parâmetros
     Então deverá retornar o status code 201
     E deverá criar um usuário com sucesso
   }
+end
+
+Dado("que possua um id de usuário inválido") do
+  @params = ''
+  @params += "/umIdQueNaoExiste"
+end
+
+E("o usuário não deverá mais existir na base") do
+  steps %{
+    Quando chamar o endpoint "/usuarios" com o método "get" com parâmetros
+    Então deverá retornar o status code 400
+    E deverá retornar a mensagem "Usuário não encontrado"
+  }
+end
+
+E("deverá alterar o usuário criado previamente") do
+  steps %{
+    Quando chamar o endpoint "/usuarios" com o método "get" com parâmetros
+  }
+  response_body_json = JSON.parse(@response.body)
+  expect(response_body_json["nome"]).to eql @body[:nome]
+  expect(response_body_json["email"]).to eql @body[:email]
 end

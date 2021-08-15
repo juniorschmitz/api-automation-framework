@@ -20,4 +20,11 @@ class ServeRest
   def delete(endpoint, body = nil)
     Excon.delete(base_uri + endpoint)
   end
+
+  def put(endpoint, body)
+    Excon.put(base_uri + endpoint,
+      :headers => { 'Content-Type' => 'application/json' },
+      :body => body.to_json
+    )
+  end
 end
