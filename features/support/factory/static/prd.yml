@@ -8,4 +8,9 @@ administrator_non_boolean:
   email: "validemail@gogo.com"
   password: "1234"
   administrador: "Potato"
-
+invalid_email:
+  email: "lalalalalalala"
+  password: "1234" 
+invalid_password:
+  email: "validemail@gogo.com"
+  password: "" 
