@@ -2,6 +2,8 @@
 
 A framework created for implementing automated tests focusing on API using Excon as the REST client.
 
+The documentation for the tested API can be found at: https://serverest.dev
+
 The framework uses:
 ```
 - Rspec;
@@ -17,5 +19,10 @@ Some of the main capabilities of the framework are:
 - Utilities for logging the infos from and to applications;
 - Easy to understand implementation using the Excon client for making HTTP calls;
 - Easy to use Features/Steps/Hooks for implementing new scenarios or migrating and creating new tests for any kind of REST APIs;
+- Contract tests using Json Schema validators;
+
+As examples on implementation, in the project there are:
+- 23 scenarios covering the /usuarios endpoint;
+- 3 scenarios covering the /login endpoint;
 
 Enjoy, any doubt, feel free to contact me.

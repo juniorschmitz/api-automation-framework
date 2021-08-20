@@ -16,6 +16,12 @@ Então("deverá retornar o status code {int}") do |status_code|
 end
 
 Então("deverá retornar a mensagem {string}") do |message|
-  response_body_json = JSON.parse(@response.body)
-  expect(response_body_json["message"]).to eql message
+  @parsed_response_body = JSON.parse(@response.body)
+  expect(@parsed_response_body["message"]).to eql message
+end
+
+Então("deverá retornar o contrato do serviço {string}") do |service|
+  @parsed_response_body = JSON.parse(@response.body)
+  schema = Utils.get_schema service
+  expect(JSON::Validator.validate!(schema, @parsed_response_body)).to be true
 end

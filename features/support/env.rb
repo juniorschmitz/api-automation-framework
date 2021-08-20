@@ -6,6 +6,10 @@ require 'pry'
 require 'rspec'
 require 'net/ssh'
 require 'os'
+require 'json-schema'
+require 'jsonpath'
 
-CONFIG = YAML.load_file(File.join(Dir.pwd, "features/support/config/#{ENV["ENVIRONMENT"]}.yaml"))
+ENVIRONMENT = ENV["ENVIRONMENT"]
+CONFIG = YAML.load_file(File.join(Dir.pwd, "features/support/config/#{ENVIRONMENT}.yaml"))
+
 $base_uri = CONFIG["uri"]
