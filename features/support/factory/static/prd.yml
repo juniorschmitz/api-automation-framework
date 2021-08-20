@@ -1,13 +1,11 @@
-usuario_valido:
-  username: 'Fernando'
-  password: '1234'
-campos_em_branco:
-  username: ''
-  password: ''
-senha_em_branco:
-  username: 'Fernando'
-  password: ''
-senha_errada:
-  username: 'Fernando'
-  password: '1323214312412'
-something_for_search: 'potato'
+invalid_email:
+  nome: "Forrest"
+  email: "thisisnotavalidemail"
+  password: "1234"
+  administrador: "false"
+administrator_non_boolean:
+  nome: "Richard Potato"
+  email: "validemail@gogo.com"
+  password: "1234"
+  administrador: "Potato"
+
