@@ -1,5 +1,6 @@
 Before do
   @params = ''
+  @serverest_api = ServeRest.new
 end
 
 After('@delete_after') do

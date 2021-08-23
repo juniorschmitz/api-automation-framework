@@ -10,5 +10,14 @@ module Factory
         administrador: "true"
       }
     end
+
+    def self.valid_product
+      {
+        nome: Faker::Name.first_name,
+        preco: "999999999",
+        descricao: "Este é um produto válido",
+        quantidade: 500
+      }
+    end
   end
 end
