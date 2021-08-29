@@ -21,10 +21,10 @@ Funcionalidade: [DELETE] ServeRest User
     Então deverá retornar o status code 200
     E deverá retornar a mensagem "Nenhum registro excluído"
 
-  @delete_user_with_cart_400
-  Cenário: [DELETE] Delete user with registered cart 400
-    Dado que possua um usuário pré-cadastrado
-    E que o usuário possua um carrinho cadastrado
-    Quando chamar o endpoint "/usuarios" com o método "delete" com parâmetros
-    Então deverá retornar o status code 400
-    E deverá retornar a mensagem "Não é permitido excluir usuário com carrinho cadastrado"
+  # @delete_user_with_cart_400
+  # Cenário: [DELETE] Delete user with registered cart 400
+  #   Dado que possua um usuário pré-cadastrado
+  #   E que o usuário possua um carrinho cadastrado
+  #   Quando chamar o endpoint "/usuarios" com o método "delete" com parâmetros
+  #   Então deverá retornar o status code 400
+  #   E deverá retornar a mensagem "Não é permitido excluir usuário com carrinho cadastrado"
