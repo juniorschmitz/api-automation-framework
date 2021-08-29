@@ -1,11 +1,9 @@
 Quando("chamar o endpoint {string} com o método {string} sem parâmetros") do |endpoint, method|
-  @serverest_api = ServeRest.new
   @response = @serverest_api.send(method, endpoint, @body)
   Utils.log_response(@response.body)
 end
 
 Quando("chamar o endpoint {string} com o método {string} com parâmetros") do |endpoint, method|
-  @serverest_api = ServeRest.new
   endpoint += @params unless @params.nil?
   @response = @serverest_api.send(method, endpoint, @body)
   Utils.log_response(@response.body)
@@ -24,4 +22,16 @@ Então("deverá retornar o contrato do serviço {string}") do |service|
   @parsed_response_body = JSON.parse(@response.body)
   schema = Utils.get_schema service
   expect(JSON::Validator.validate!(schema, @parsed_response_body)).to be true
+end
+
+Dado("que tenha salvado o token para as requisições") do
+  steps %{
+    Dado que possua um usuário pré-cadastrado
+    E que possua os dados do usuário criado para logar
+    Quando chamar o endpoint "/login" com o método "post" sem parâmetros
+    Então deverá retornar o status code 200
+    E deverá retornar a mensagem "Login realizado com sucesso"
+  }
+  token = @parsed_response_body["authorization"]
+  @serverest_api.set_token(token)
 end
